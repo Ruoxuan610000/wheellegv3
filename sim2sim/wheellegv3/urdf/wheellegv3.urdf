@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="wheellegv3">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.00000000 -0.02252514"
+        rpy="0 0 0" />
+      <mass
+        value="0.49424000" />
+      <inertia
+        ixx="0.00063105"
+        ixy="0.00000000"
+        ixz="0.00000000"
+        iyy="0.00050323"
+        iyz="0.00000000"
+        izz="0.00097315" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.02"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.12 0.08 0.08" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="right_forw_link">
+    <inertial>
+      <origin
+        xyz="0.00257660 -0.00903110 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730506" />
+      <inertia
+        ixx="0.00001109"
+        ixy="0.00000130"
+        ixz="0.00000000"
+        iyy="0.00002134"
+        iyz="0.00000000"
+        izz="0.00001624" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/right_forw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.025 -0.015 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.01 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_forw_joint"
+    type="revolute">
+    <origin
+      xyz="0.0299999999999996 -0.0465000000000061 -0.0207477149373764"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_forw_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="right_forw_p_link">
+    <inertial>
+      <origin
+        xyz="-0.045053 -0.0026109 -0.038298"
+        rpy="0 0 0" />
+      <mass
+        value="0.010927" />
+      <inertia
+        ixx="7.603E-06"
+        ixy="5.4236E-08"
+        ixz="-8.2643E-06"
+        iyy="1.7867E-05"
+        iyz="4.6105E-08"
+        izz="1.0317E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/right_forw_p_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.03 -0.005 -0.03"
+        rpy="0 -0.70454742 0" />
+      <geometry>
+        <box size="0.13 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_forw_p_joint"
+    type="revolute">
+    <origin
+      xyz="0.0499999999999997 -0.0210000000000049 0"
+      rpy="0 0 0" />
+    <parent
+      link="right_forw_link" />
+    <child
+      link="right_forw_p_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="0.00000000 -0.01761306 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730000" />
+      <inertia
+        ixx="0.00000907"
+        ixy="0.00000000"
+        ixz="0.00000000"
+        iyy="0.00001408"
+        iyz="0.00000000"
+        izz="0.00000907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.058824 0.058824 0.058824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 -0.019 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.0255" length="0.02" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0799999999999986 0 -0.0680073525436785"
+      rpy="0 0 0" />
+    <parent
+      link="right_forw_p_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="0.03"
+      velocity="2600" />
+    <dynamics
+      damping="0.001"
+      friction="0" />
+  </joint>
+  <link
+    name="right_back_link">
+    <inertial>
+      <origin
+        xyz="-0.00257660 -0.00947936 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730506" />
+      <inertia
+        ixx="0.00001169"
+        ixy="-0.00000213"
+        ixz="0.00000000"
+        iyy="0.00002134"
+        iyz="0.00000000"
+        izz="0.00001685" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/right_back_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.025 -0.025 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_joint"
+    type="revolute">
+    <origin
+      xyz="-0.03 -0.0465000000000061 -0.0207477149373767"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_back_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="right_back_p_link">
+    <inertial>
+      <origin
+        xyz="0.045053 0.0026109 -0.038298"
+        rpy="0 0 0" />
+      <mass
+        value="0.010927" />
+      <inertia
+        ixx="7.603E-06"
+        ixy="5.4236E-08"
+        ixz="8.2643E-06"
+        iyy="1.7867E-05"
+        iyz="-4.6105E-08"
+        izz="1.0317E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/right_back_p_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.03 0.005 -0.03"
+        rpy="0 0.70458942 0" />
+      <geometry>
+        <box size="0.13 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_back_p_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0500000000000002 -0.0210000000000046 0"
+      rpy="0 0 0" />
+    <parent
+      link="right_back_link" />
+    <child
+      link="right_back_p_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="left_forw_link">
+    <inertial>
+      <origin
+        xyz="0.00257660 0.00903110 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730506" />
+      <inertia
+        ixx="0.00001109"
+        ixy="-0.00000130"
+        ixz="0.00000000"
+        iyy="0.00002134"
+        iyz="0.00000000"
+        izz="0.00001624" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/left_forw_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.025 0.015 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.01 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_forw_joint"
+    type="revolute">
+    <origin
+      xyz="0.0299999999999997 0.0465000000000062 -0.0207477149373772"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_forw_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="left_forw_p_link">
+    <inertial>
+      <origin
+        xyz="-0.045052 0.0026109 -0.038299"
+        rpy="0 0 0" />
+      <mass
+        value="0.010927" />
+      <inertia
+        ixx="7.62E-06"
+        ixy="-5.4235E-08"
+        ixz="-8.2671E-06"
+        iyy="1.7867E-05"
+        iyz="-4.6106E-08"
+        izz="1.03E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/left_forw_p_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.03 0.005 -0.03"
+        rpy="0 -0.70454742 0" />
+      <geometry>
+        <box size="0.13 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_forw_p_joint"
+    type="revolute">
+    <origin
+      xyz="0.0500000000000001 0.0209999999999993 0"
+      rpy="0 0 0" />
+    <parent
+      link="left_forw_link" />
+    <child
+      link="left_forw_p_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="0.00000000 0.01761306 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730000" />
+      <inertia
+        ixx="0.00000907"
+        ixy="0.00000000"
+        ixz="0.00000000"
+        iyy="0.00001408"
+        iyz="0.00000000"
+        izz="0.00000907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.058824 0.058824 0.058824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0.019 0"
+        rpy="1.57 0 0" />
+      <geometry>
+        <cylinder radius="0.0255" length="0.02" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.08 0 -0.068007"
+      rpy="0 0 0" />
+    <parent
+      link="left_forw_p_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      effort="0.03"
+      velocity="2600" />
+    <dynamics
+      damping="0.001"
+      friction="0" />
+  </joint>
+  <link
+    name="left_back_link">
+    <inertial>
+      <origin
+        xyz="-0.00257660 0.00947936 0.00000000"
+        rpy="0 0 0" />
+      <mass
+        value="0.05730506" />
+      <inertia
+        ixx="0.00001169"
+        ixy="0.00000213"
+        ixz="0.00000000"
+        iyy="0.00002134"
+        iyz="0.00000000"
+        izz="0.00001685" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/left_back_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.025 0.025 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_back_joint"
+    type="revolute">
+    <origin
+      xyz="-0.03 0.0465 -0.020748"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_back_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+  <link
+    name="left_back_p_link">
+    <inertial>
+      <origin
+        xyz="0.045052 -0.0026109 -0.038299"
+        rpy="0 0 0" />
+      <mass
+        value="0.010927" />
+      <inertia
+        ixx="7.62E-06"
+        ixy="-5.4235E-08"
+        ixz="8.2671E-06"
+        iyy="1.7867E-05"
+        iyz="4.6106E-08"
+        izz="1.03E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheellegv3/meshes/left_back_p_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0.03 -0.005 -0.03"
+        rpy="0 0.70458942 0" />
+      <geometry>
+        <box size="0.13 0.005 0.03" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_back_p_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0500000000000008 0.0210000000000049 0"
+      rpy="0 0 0" />
+    <parent
+      link="left_back_link" />
+    <child
+      link="left_back_p_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0.49"
+      velocity="504" />
+    <dynamics
+      damping="0.005"
+      friction="0" />
+  </joint>
+</robot>

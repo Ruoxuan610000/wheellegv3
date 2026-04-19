@@ -1,0 +1,152 @@
+<mujoco model="wheellegv3">
+  <compiler angle="radian" meshdir="../meshes/" autolimits="true"/>
+  
+  <option timestep="0.005" tolerance="1e-6" impratio="10" solver="Newton"/>
+  <default>
+    <default class="wheellegv3">
+      <geom type="mesh"/>
+      <!-- Match the training USD: passive joint damping/friction is zero and
+           the active drive behavior is represented by the MuJoCo actuators below. -->
+      <joint damping="0" armature="0"/>
+      <default class="visual">
+        <geom contype="0" conaffinity="0" group="2" material="black"/>
+      </default>
+      <default class="collision">
+        <!-- Disable robot self-collisions while preserving robot-ground contact. -->
+        <geom
+          group="3"
+          mass="0"
+          density="0"
+          contype="1"
+          conaffinity="2"
+          friction="0.8 0.001 0.00005"
+          solimp="0.90 0.95 0.001"
+          solref="0.003 1"/>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+    </default>
+  </default>
+
+  <asset>
+    <material name="black" rgba="0.1 0.1 0.1 1"/>
+    <material name="white" rgba="1 1 1 1"/>
+    
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+    <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="right_forw_link" file="right_forw_link.STL"/>
+    <mesh name="right_forw_p_link" file="right_forw_p_link.STL"/>
+    <mesh name="right_wheel_link" file="right_wheel_link.STL"/>
+    <mesh name="right_back_link" file="right_back_link.STL"/>
+    <mesh name="right_back_p_link" file="right_back_p_link.STL"/>
+    <mesh name="left_forw_link" file="left_forw_link.STL"/>
+    <mesh name="left_forw_p_link" file="left_forw_p_link.STL"/>
+    <mesh name="left_wheel_link" file="left_wheel_link.STL"/>
+    <mesh name="left_back_link" file="left_back_link.STL"/>
+    <mesh name="left_back_p_link" file="left_back_p_link.STL"/>
+  </asset>
+
+  <worldbody>
+    <light directional="true" diffuse=".4 .4 .4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" castshadow="false" />
+    <light directional="true" diffuse=".6 .6 .6" specular="0.2 0.2 0.2" pos="0 0 4" dir="0 0 -1" />
+    <geom name="ground" type="plane" pos="0 0 0" size="0 0 1" material="matplane" condim="3" friction="1.0 0.005 0.0001"/>
+    
+    <body name="base_link" pos="0 0 0.114" childclass="wheellegv3">
+      <inertial
+        pos="0.00000000 0.00000000 -0.02252514"
+        mass="0.49424000"
+        diaginertia="0.00063105 0.00050323 0.00097315" />
+      <freejoint/>
+      <geom class="visual" mesh="base_link"/>
+      <geom size="0.06 0.04 0.04" pos="0 0 -0.02" type="box" class="collision"/>
+      <body name="right_forw_link" pos="0.03 -0.0465 -0.0207477">
+        <inertial pos="0.0025766 -0.0090311 0" quat="0.530068 0.530068 0.468004 0.468004" mass="0.0573051" diaginertia="2.15023e-05 1.624e-05 1.09277e-05"/>
+        <joint name="right_forw_joint" pos="0 0 0" axis="0 1 0" range="0 1.57" armature="0.028"/>
+        <geom class="visual" mesh="right_forw_link"/>
+        <geom size="0.04 0.005 0.015" pos="0.025 -0.015 0" type="box" class="collision"/>
+        <body name="right_forw_p_link" pos="0.05 -0.021 0">
+          <inertial pos="-0.045053 -0.0026109 -0.038298" quat="0.642322 0.298278 0.295614 0.641143" mass="0.010927" diaginertia="1.78673e-05 1.7335e-05 5.84738e-07"/>
+          <joint name="right_forw_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14 3.14"/>
+          <geom class="visual" mesh="right_forw_p_link"/>
+          <geom size="0.065 0.0025 0.015" pos="-0.03 -0.005 -0.03" quat="0.938591 0 -0.345033 0" type="box" class="collision"/>
+          <body name="right_wheel_link" pos="-0.08 0 -0.0680074">
+            <inertial pos="0 -0.0176131 0" quat="0.707107 0 0 0.707107" mass="0.0573" diaginertia="1.408e-05 9.07e-06 9.07e-06"/>
+            <joint name="right_wheel_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom class="visual" mesh="right_wheel_link"/>
+            <geom size="0.0255 0.01" pos="0 -0.019 0" quat="0.707388 0.706825 0 0" type="cylinder" class="collision" friction="0.8 0.001 0.00005"/>
+            <site name="right_wheel_axle_inboard_site" pos="0 -0.01 0"/>
+            <site name="right_wheel_axle_outboard_site" pos="0 0.01 0"/>
+          </body>
+        </body>
+      </body>
+      <body name="right_back_link" pos="-0.03 -0.0465 -0.0207477">
+        <inertial pos="-0.0025766 -0.00947936 0" quat="0.44543 0.44543 0.549174 0.549174" mass="0.0573051" diaginertia="2.17892e-05 1.685e-05 1.12408e-05"/>
+        <joint name="right_back_joint" pos="0 0 0" axis="0 1 0" range="-1.57 0" armature="0.028"/>
+        <geom class="visual" mesh="right_back_link"/>
+        <geom size="0.04 0.0025 0.015" pos="-0.025 -0.025 0" type="box" class="collision"/>
+        <body name="right_back_p_link" pos="-0.05 -0.021 0">
+          <inertial pos="0.045053 0.0026109 -0.038298" quat="0.298278 0.642322 0.641143 0.295614" mass="0.010927" diaginertia="1.78673e-05 1.7335e-05 5.84738e-07"/>
+          <joint name="right_back_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14 3.14"/>
+          <geom class="visual" mesh="right_back_p_link"/>
+          <geom size="0.065 0.0025 0.015" pos="0.03 0.005 -0.03" quat="0.938583 0 0.345052 0" type="box" class="collision"/>
+          <site name="right_back_axle_inboard_site" pos="0.08 -0.01 -0.0680074"/>
+          <site name="right_back_axle_outboard_site" pos="0.08 0.01 -0.0680074"/>
+        </body>
+      </body>
+      <body name="left_forw_link" pos="0.03 0.0465 -0.0207477">
+      <inertial pos="0.0025766 0.0090311 0" quat="0.468004 0.468004 0.530068 0.530068" mass="0.0573051" diaginertia="2.15023e-05 1.624e-05 1.09277e-05"/>
+        <joint name="left_forw_joint" pos="0 0 0" axis="0 1 0" range="0 1.57079632679" armature="0.028"/>
+        <geom class="visual" mesh="left_forw_link"/>
+        <geom size="0.04 0.005 0.015" pos="0.025 0.015 0" type="box" class="collision"/>
+        <body name="left_forw_p_link" pos="0.05 0.021 0">
+          <inertial pos="-0.045052 0.0026109 -0.038299" quat="0.641253 0.295304 0.297928 0.642517" mass="0.010927" diaginertia="1.78673e-05 1.7335e-05 5.84712e-07"/>
+          <joint name="left_forw_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14 3.14"/>
+          <geom class="visual" mesh="left_forw_p_link"/>
+          <geom size="0.065 0.0025 0.015" pos="-0.03 0.005 -0.03" quat="0.938591 0 -0.345033 0" type="box" class="collision"/>
+          <body name="left_wheel_link" pos="-0.08 0 -0.068007">
+            <inertial pos="0 0.0176131 0" quat="0.707107 0 0 0.707107" mass="0.0573" diaginertia="1.408e-05 9.07e-06 9.07e-06"/>
+            <joint name="left_wheel_joint" pos="0 0 0" axis="0 1 0"/>
+            <geom class="visual" mesh="left_wheel_link"/>
+            <geom size="0.0255 0.01" pos="0 0.019 0" quat="0.707388 0.706825 0 0" type="cylinder" class="collision" friction="0.8 0.001 0.00005"/>
+            <site name="left_wheel_axle_inboard_site" pos="0 -0.01 0"/>
+            <site name="left_wheel_axle_outboard_site" pos="0 0.01 0"/>
+          </body>
+        </body>
+      </body>
+      <body name="left_back_link" pos="-0.03 0.0465 -0.020748">
+        <inertial pos="-0.0025766 0.00947936 0" quat="0.549174 0.549174 0.44543 0.44543" mass="0.0573051" diaginertia="2.17892e-05 1.685e-05 1.12408e-05"/>
+        <joint name="left_back_joint" pos="0 0 0" axis="0 1 0" range="-1.57079632679 0" armature="0.028"/>
+        <geom class="visual" mesh="left_back_link"/>
+        <geom size="0.04 0.0025 0.015" pos="-0.025 0.025 0" type="box" class="collision"/>
+        <body name="left_back_p_link" pos="-0.05 0.021 0">
+          <inertial pos="0.045052 -0.0026109 -0.038299" quat="0.295304 0.641253 0.642517 0.297928" mass="0.010927" diaginertia="1.78673e-05 1.7335e-05 5.84712e-07"/>
+          <joint name="left_back_p_joint" pos="0 0 0" axis="0 1 0" range="-3.14 3.14"/>
+          <geom class="visual" mesh="left_back_p_link"/>
+          <geom size="0.065 0.0025 0.015" pos="0.03 -0.005 -0.03" quat="0.938583 0 0.345052 0" type="box" class="collision"/>
+          <site name="left_back_axle_inboard_site" pos="0.08 -0.01 -0.068007"/>
+          <site name="left_back_axle_outboard_site" pos="0.08 0.01 -0.068007"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  
+  <equality>
+    <!-- Use two point-to-point constraints at the axle to approximate a passive hinge
+         between the back lower link and wheel, instead of rigidly welding both lower links. -->
+    <connect name="left_equal_inboard" site1="left_back_axle_inboard_site" site2="left_wheel_axle_inboard_site" solref="0.002 1" solimp="0.95 0.99 0.001"/>
+    <connect name="left_equal_outboard" site1="left_back_axle_outboard_site" site2="left_wheel_axle_outboard_site" solref="0.002 1" solimp="0.95 0.99 0.001"/>
+    <connect name="right_equal_inboard" site1="right_back_axle_inboard_site" site2="right_wheel_axle_inboard_site" solref="0.002 1" solimp="0.95 0.99 0.001"/>
+    <connect name="right_equal_outboard" site1="right_back_axle_outboard_site" site2="right_wheel_axle_outboard_site" solref="0.002 1" solimp="0.95 0.99 0.001"/>
+  </equality>
+  
+  <actuator>
+    <motor class="wheellegv3" name="left_forw" joint="left_forw_joint" forcerange="-0.49 0.49"/>
+    <motor class="wheellegv3" name="left_back" joint="left_back_joint" forcerange="-0.49 0.49"/>
+    <motor class="wheellegv3" name="right_forw" joint="right_forw_joint" forcerange="-0.49 0.49"/>
+    <motor class="wheellegv3" name="right_back" joint="right_back_joint" forcerange="-0.49 0.49"/>
+    <motor class="wheellegv3" name="left_wheel" joint="left_wheel_joint" forcerange="-0.03 0.03"/>
+    <motor class="wheellegv3" name="right_wheel" joint="right_wheel_joint" forcerange="-0.03 0.03"/>
+  </actuator>
+  
+</mujoco>
